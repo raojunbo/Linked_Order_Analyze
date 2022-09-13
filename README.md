@@ -40,7 +40,7 @@ static NSString * const BASE_PATH = @"/Users/liyang/Desktop/1";
 2. 修改完毕之后，__clean__ 一下，运行工程，__Products -> Show in Finder__，在mach-o文件上上层目录 __Intermediates.noindex__文件下找到一个txt文件。将其重命名为linked_map.txt
 
 --- 
-### 如何编译出 lb.order 文件
+#### 如何编译出 lb.order 文件
 
 1. 在目标工程 __Target -> Build Settings -> Other C Flags__ 添加 __-fsanitize-coverage=func,trace-pc-guard__。
 
