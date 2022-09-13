@@ -28,7 +28,7 @@ App启动时间优化 二进制重排技术 线下量化预分析工具
 // 链接文件和order文件根目录
 static NSString * const BASE_PATH = @"/Users/liyang/Desktop/1"; 
 ```
-在修改完BASE_PATH后，跑起来此工程。可以大致检测出优化的时间。
+3. 在修改完BASE_PATH后，跑起来此工程。可以大致检测出优化的时间。
 ---
 
 #### 如何编译出 linked_map.txt 文件
