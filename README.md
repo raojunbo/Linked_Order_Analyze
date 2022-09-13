@@ -22,13 +22,15 @@ App启动时间优化 二进制重排技术 线下量化预分析工具
 ---
 
 ### 使用方法：
-1. 使用xcode编译您的工程产出 linked_map.txt 和 lb.order 文件，并放在同一个目录
-2. 修改下面的路径到上述两个文件的根目录
+1. 使用xcode编译您的工程产出 linked_map.txt 
+2. 集成MMTracePCGuard到您的工程产出lb.order 文件
+3. linked_map.txt 与lb.order 并放在同一个目录
+4. 修改下面的路径到上述两个文件的根目录
 ```
 // 链接文件和order文件根目录
 static NSString * const BASE_PATH = @"/Users/liyang/Desktop/1"; 
 ```
-3. 在修改完BASE_PATH后，跑起来此工程。可以大致检测出优化的时间。
+3. 在修改完BASE_PATH后，跑起来此工程。可以大致检测出可以优化的时间。
 ---
 
 #### 如何编译出 linked_map.txt 文件
@@ -38,7 +40,6 @@ static NSString * const BASE_PATH = @"/Users/liyang/Desktop/1";
 2. 修改完毕之后，__clean__ 一下，运行工程，__Products -> Show in Finder__，在mach-o文件上上层目录 __Intermediates.noindex__文件下找到一个txt文件。将其重命名为linked_map.txt
 
 --- 
-## 您的项目导出lb.order
 ### 如何编译出 lb.order 文件
 
 1. 在目标工程 __Target -> Build Settings -> Other C Flags__ 添加 __-fsanitize-coverage=func,trace-pc-guard__。
