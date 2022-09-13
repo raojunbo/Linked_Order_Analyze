@@ -6,8 +6,8 @@ App启动时间优化 二进制重排技术 线下量化预分析工具
 建议：每隔三个月执行一次二进制重排更新，确保 PageFault 次数维持在一个较低的稳定的水平
 
 ---
-
-### 大体思路：
+## 线下量化Mac工具
+###  大体思路：
 ```
  1. 读取 Linked Map 文件，获取 __Text 代码区的起始地址和块大小，分析得到需要分配的虚拟内存页个数
  2. 获取 __Text 代码区 所有symbol的地址、大小和具体符号，存入字典
@@ -22,23 +22,23 @@ App启动时间优化 二进制重排技术 线下量化预分析工具
 ---
 
 ### 使用之前：
-1. 使用xcode编译出 linked_map.txt 和 lb.order 文件，并放在同一个目录
+1. 使用xcode编译您的工程产出 linked_map.txt 和 lb.order 文件，并放在同一个目录
 2. 修改下面的路径到上述两个文件的根目录
 ```
 // 链接文件和order文件根目录
 static NSString * const BASE_PATH = @"/Users/liyang/Desktop/1"; 
 ```
-
+在修改完BASE_PATH后，跑起来此工程。可以大致检测出优化的时间。
 ---
 
-### 如何编译出 linked_map.txt 文件
+#### 如何编译出 linked_map.txt 文件
 
 1. 在 __Target -> Build Settings__ 下，找到 __Write Link Map File__ 来设置输出与否 , 默认是 no .
 
 2. 修改完毕之后，__clean__ 一下，运行工程，__Products -> Show in Finder__，在mach-o文件上上层目录 __Intermediates.noindex__文件下找到一个txt文件。将其重命名为linked_map.txt
 
 --- 
-
+## 您的项目导出lb.order
 ### 如何编译出 lb.order 文件
 
 1. 在目标工程 __Target -> Build Settings -> Other C Flags__ 添加 __-fsanitize-coverage=func,trace-pc-guard__。
